@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Portfolio</title>
+   <script src="https://kit.fontawesome.com/45644447ad.js" crossorigin="anonymous"></script>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
+    body { background: linear-gradient(120deg, #0a0a0a, #111, #1a1a1a); color: #fff; line-height: 1.6; scroll-behavior: smooth; }
+    
+    /* Header */
+    header { text-align: center; padding: 0px 20px 100px 20px; background: linear-gradient(45deg, #00ffcc, #ff00ff, #00ccff); background-size: 400% 400%; animation: gradientMove 8s ease infinite; }
+    header h1 { font-size: 2.5rem; animation: fadeInDown 2s ease; }
+    header p { font-size: 1.2rem; margin-top: 10px; animation: typing 4s steps(30) infinite alternate; white-space: nowrap; overflow: hidden; border-right: 3px solid #fff; display: inline-block; }
+
+    @keyframes typing { from { width: 0 } to { width: 22ch } }
+    @keyframes gradientMove { 0%{background-position:0% 50%} 50%{background-position:100% 50%} 100%{background-position:0% 50%} }
+    @keyframes fadeInDown { from { opacity:0; transform:translateY(-50px);} to {opacity:1; transform:translateY(0);} }
+
+    /* Sections */
+    section { padding: 60px 20px; max-width: 1100px; margin: auto; opacity: 0; transform: translateY(50px); transition: all 1s ease; }
+    section.show { opacity: 1; transform: translateY(0); }
+    h2 { text-align: center; margin-bottom: 30px; font-size: 2rem; background: linear-gradient(90deg, #00ffcc, #ff00ff, #ffcc00); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+
+    /* About Section */
+    .about-container { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 30px; }
+    .about-container img { width: 200px; border-radius: 5%; box-shadow: 0 0 20px #00ffcc; transition: transform 0.4s; }
+    .about-container img:hover { transform: scale(1.05) rotate(5deg); }
+    .about-text { max-width: 600px; text-align: center; font-family: 'Segoe UI', sans-serif; font-size : 25px; }
+
+    /* Skills & Courses */
+    .skills, .courses { display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: 20px; text-align: center; }
+    .skills img, .courses img { width: 65px; margin-bottom: 10px; transition: transform 0.4s, filter 0.4s; }
+    .skills img:hover, .courses img:hover { transform: scale(1.2) rotate(8deg); filter: drop-shadow(0 0 12px #00ffcc); }
+
+    /* Projects */
+    .projects { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 20px; }
+    .project { background: rgba(255,255,255,0.05); padding: 20px; border-radius: 15px; backdrop-filter: blur(5px); transition: transform 0.3s, box-shadow 0.3s; text-align: center; }
+    .project img { width: 100%; border-radius: 10px; margin-bottom: 12px; }
+    .project:hover { transform: scale(1.03); box-shadow: 0 0 18px #ff00ff; }
+
+    /* Footer */
+    footer { text-align: center; padding: 30px; background: linear-gradient(45deg, #111, #222); margin-top: 40px; }
+    footer a { color: #00ffcc; text-decoration: none; margin: 0 10px; transition: color 0.3s; }
+    footer a:hover { color: #ff00ff; text-shadow: 0 0 8px #ff00ff; }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      header h1 { font-size: 2rem; }
+      header p { font-size: 1rem; }
+      .about-container { flex-direction: column; text-align: center; }
+      .about-container img { width: 150px; }
+      h2 { font-size: 1.6rem; }
+    }
+
+    @media (max-width: 480px) {
+      header h1 { font-size: 1.6rem; }
+      header p { font-size: 0.9rem; }
+      section { padding: 40px 15px; }
+      .skills img, .courses img { width: 55px; }
+      .project { padding: 15px; }
+    }
+  </style>
+  <!-- Contact Form Section -->
+  <style>
+  #submit-to-google-sheet { display: flex; flex-direction: column; gap: 12px; }
+  #submit-to-google-sheet label { font-size: 1rem; color: #ccc; }
+  #submit-to-google-sheet input, #contactForm textarea { 
+    padding: 10px; 
+    border-radius: 8px; 
+    border: none; 
+    outline: none; 
+    background: rgba(255,255,255,0.1); 
+    color: #fff; 
+  }
+  #submit-to-google-sheet input:focus, #contactForm textarea:focus { 
+    border: 1px solid #00ffcc; 
+    box-shadow: 0 0 10px #00ffcc; 
+  }
+  #submit-to-google-sheet button {
+    padding: 12px;
+    border: none;
+    border-radius: 8px;
+    background: linear-gradient(90deg,#00ffcc,#ff00ff);
+    color: #fff;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: transform 0.3s;
+  }
+  #submit-to-google-sheet button:hover { transform: scale(1.05); }
+  
+.copyright{
+    width: 100%;
+    text-align: center;
+    padding: 25px 0;
+    background: #262626;
+    font-weight: 300;
+    margin-top: 20px;
+}
+.copyright i{
+    color: #ff004f;
+}
+
+
+  nav{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+	}
+.logo{
+display: flex;
+flex-wrap: wrap;
+    width: 300px;
+}
+
+nav ul li{
+    display: inline-block;
+    list-style: none;
+    margin: 10px 20px;
+}
+nav ul li a{
+    color: #f8ffffe4;
+    text-decoration: none;
+    font-size: 18px;
+    position: relative;
+}
+nav ul li a::after{
+    content: '';
+    width: 0;
+    height: 3px;
+    background: #c70909a2;
+    position: absolute;
+    left: 0;
+    bottom: -6px;
+    transition: 0.5s;
+
+}
+nav ul li a:hover::after{
+    width: 100%;
+}
+</style>
+</head>
+<body>
+  <!-- Hero Section -->
+  <header>
+  	<div id="header">
+    <div class="container">
+  	<nav>
+            <img src="images\vlogo.png" alt="logo" class="logo">
+            <ul id="sidemenu">
+                <li><a href="#header">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#education">Education</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+ 
+	  <h1>Hi, I'm Vamshi</h1>
+	  <p>Web Developer | .NET | Angular | SQL</p>
+	  
+	  </div>
+	  </div>
+  </header>
+
+  <!-- About Section -->
+  <section id="about">
+    <h2>About Me</h2>
+    <div class="about-container">
+      <img src="images\vpro.jpg" alt="Developer">
+      <div class="about-text">
+        <p>I am a passionate web developer with expertise in .NET, C#, Angular, SQL, and modern web technologies. I build interactive, user-friendly, and efficient applications with creative design.</p>
+      </div>
+    </div>
+  </section>
+  <!-- Education Section -->
+  <section id="education">
+    <h2>Education</h2>
+    <div class="projects">
+      <div class="project">
+        <h3><b style="font-size:25px; color:#8780FF;">Graduation</b><br>B.SC Computer Science - G.Pulla Reddy Degree College</h3>
+        <p>2020 - 2025.</p>
+      </div>
+      <div class="project">
+        <h3><b style="font-size:25px; color:#8780FF;">Inter</b><br>Sri Chaitanya Junior College.</h3>
+        <p>2018 - 2020</p>
+      </div>
+      <div class="project">
+        <h3><b style="font-size:25px; color:#8780FF;">SSC</b><br> Krishnaveni High School.</h3>
+        <p>2017 - 2018</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Skills Section -->
+  <section id="skills">
+    <h2>Skills</h2>
+    <div class="skills">
+      <div><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg"><p>HTML</p></div>
+      <div><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg"><p>CSS</p></div>
+      <div><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg"><p>JavaScript</p></div>
+      <div><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/angularjs/angularjs-original.svg"><p>Angular</p></div>
+      <div><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/csharp/csharp-original.svg"><p>C#</p></div>
+      <div><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/dot-net/dot-net-original.svg"><p>.NET</p></div>
+      <div><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg"><p>SQL</p></div>
+    </div>
+  </section>
+
+  <!-- Courses Section -->
+  <section id="courses">
+    <h2>Courses</h2>
+    <div class="courses">
+      <div><img src="https://cdn-icons-png.flaticon.com/512/919/919842.png"><p>.NET Development</p></div>
+      <div><img src="https://cdn-icons-png.flaticon.com/512/919/919854.png"><p>C# Advanced</p></div>
+      <div><img src="https://cdn-icons-png.flaticon.com/512/919/919826.png"><p>Angular Framework</p></div>
+      <div><img src="https://cdn-icons-png.flaticon.com/512/919/919836.png"><p>SQL Database</p></div>
+    </div>
+  </section>
+
+  <!-- Projects Section -->
+  <section id="projects">
+    <h2>Projects</h2>
+    <div class="projects">
+      <div class="project">
+        <img src="images\portfolio.webp" alt="Portfolio Project">
+        <h3>Portfolio Website</h3>
+        <p>A personal portfolio to showcase my skills and projects.<br>Designed and developed a responsive website using HTML, CSS, and JavaScript. Integrated interactive UI components to enhance user experience. Deployed the site for public access and continuous updates.</p>
+      </div>
+      <div class="project">
+        <img src="images\auto car.webp" alt="Task Manager">
+        <h3>Automatic car washing machine</h3>
+        <p>Developed an automatic car washing system using Arduino IDE. Integrated IR/ultrasonic sensors for car detection. Implemented time - based washing sequence with C/C++ code.</p>
+      </div>
+      <div class="project">
+        <img src="images\food.webp" alt="E-commerce">
+        <h3> FoodService (HTML, CSS, JS and MySQL)</h3>
+        <p>Developed responsive HTML pages with CSS and JavaScript for user interaction. Connected front-end to SQL database for storing and retrieving user data. Implemented form validation and data visualization features.</p>
+      </div>
+    </div>
+  </section>
+  <!-- Contact Form Section -->
+	<section id="contact">
+	  <h2>Contact Me</h2>
+	  <form id="submit-to-google-sheet" style="max-width: 500px; margin:auto; text-align:left;">
+	    
+	    <label for="name">Name:</label>
+	    <input type="text" id="name" name="Name" required>
+	
+	    <label for="email">Email:</label>
+	    <input type="email" id="email" name="Email" required>
+	
+	    <label for="message">Message:</label>
+	    <textarea id="message" name="Message" rows="5" required></textarea>
+	
+	    <button type="submit">Send</button>
+	    <p id="successMsg" style="color:#00ffcc; margin-top:10px; display:none;">
+	      ✅ Message sent successfully!
+	    </p>
+	  </form>
+	</section>
+  
+
+  <!-- Contact Section -->
+  <footer>
+    <p>📧 vamshi@example.com</p>
+    <p>
+      <a href="http://linkedin.com/in/adire-vamshi-010215372">LinkedIn</a> | 
+      <a href="https://github.com/vamshiadire">GitHub</a> | 
+      <a href="https://www.facebook.com/share/1EHGc28PiE/?mibextid=wwXIfr">Facebook</a> | 
+      <a href="#">Resume</a>
+    </p>
+    <div class="copyright">
+    <p>Copyright <i class="fa-regular fa-copyright"></i> Vamshi. <i class="fa-solid fa-heart"></i></p>
+</div>
+  </footer>
+
+  <!-- Scroll Reveal Animation -->
+  <script>
+    const sections = document.querySelectorAll("section");
+    const revealOnScroll = () => {
+      sections.forEach(sec => {
+        const top = sec.getBoundingClientRect().top;
+        if(top < window.innerHeight - 100) sec.classList.add("show");
+      });
+    };
+    window.addEventListener("scroll", revealOnScroll);
+    revealOnScroll();
+  </script>
+  
+  <!-- Contact Form Section -->
+	<script>
+	    const scriptURL = 'https://script.google.com/macros/s/AKfycbzNo6rhh4e6ziQxU2vvcfUZcyGTJZ34gfh1iryMOwTysoNbdQUZEiEJKfCLK4hPjQ/exec'
+	    const form = document.forms['submit-to-google-sheet']
+	    const msg = document.getElementById("successMsg")
+	  
+	    form.addEventListener('submit', e => {
+	      e.preventDefault()
+	      fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+	        .then(response => {
+	            msg.innerHTML= "Message sent sucessfully"
+	            setTimeout(function(){
+	                msg.innerHTML = ""
+	            },5000)
+	            form.reset()
+	        })
+	        .catch(error => console.error('Error!', error.message))
+	    })
+	  </script>
+</body>
+</html>
+
